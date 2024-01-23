@@ -377,9 +377,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   acceleration: 3
-  maxVelocity: 10
-  distanceToStop: 1
-  velPow: 0.9
+  maxVelocity: 5
+  minVelocity: 1
+  distanceToStop: 0.8
+  velPow: 0.85
 --- !u!1 &1574953366
 GameObject:
   m_ObjectHideFlags: 0

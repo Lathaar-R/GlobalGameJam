@@ -8,12 +8,14 @@ public class PlayerMovement : MonoBehaviour
 {
     #region Variaveis
     private Rigidbody2D rb;
+    private float curMinVelocity;
 
     //Serializadas 
     [SerializeField] private float acceleration = 3;
-    [SerializeField] private float maxVelocity = 10;
-    [SerializeField] private float distanceToStop = 1;
-    [SerializeField] private float velPow = 0.9f;
+    [SerializeField] private float maxVelocity = 5;
+    [SerializeField] private float minVelocity = 1f;
+    [SerializeField] private float distanceToStop = 0.8f;
+    [SerializeField] private float velPow = 0.85f;
 
     //Propriedades
 
@@ -41,17 +43,24 @@ public class PlayerMovement : MonoBehaviour
         float distance = direction.magnitude;
 
         if (distance < distanceToStop)
+        {
             rb.velocity *= Mathf.Clamp01(distance / distanceToStop);
+            curMinVelocity = 0;
+        }
         else
         {
+            Debug.DrawRay(rb.position, direction, Color.red);
+            direction -= direction.normalized * distanceToStop;
+            Debug.DrawRay(rb.position, direction, Color.blue);
+
             var vel = Mathf.Pow((direction * acceleration).magnitude, velPow) * direction.normalized;
-            vel = vel.magnitude < maxVelocity ? vel : direction.normalized * maxVelocity;
+            vel = vel.magnitude < maxVelocity ? (vel.magnitude < curMinVelocity ? direction.normalized * curMinVelocity : vel) : direction.normalized * maxVelocity;
 
             rb.velocity = vel;
 
+            if(rb.velocity.magnitude > minVelocity) curMinVelocity = minVelocity;
         }
 
-        if(Keyboard.current.spaceKey.isPressed)
-            rb.AddForce(Vector2.one * 10f, ForceMode2D.Impulse);
+
     }
 }
