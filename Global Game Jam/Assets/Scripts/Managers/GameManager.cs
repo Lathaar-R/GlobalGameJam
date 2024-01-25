@@ -18,6 +18,8 @@ public class GameManager : MonoBehaviour
     //criando lista de letras
     public List<Letter> letters;
     //lista de piadas
+
+    int a=0;
     public string[] jokes;
     // Referência para os textos de pontuação e palavra
 
@@ -27,8 +29,6 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        
-        
         // Inicializa o jogo
         StartGame();
     }
@@ -37,10 +37,10 @@ public class GameManager : MonoBehaviour
     {
         //inicializando as cores dos botões
         colorButtons = new Color[4];
-        colorButtons[0] = new Color(1.0f, 0.0f, 0.0f);
-        colorButtons[1] = new Color(0.0f, 0.0f, 1.0f);
-        colorButtons[2] = new Color(1.0f, 0.92f, 0.016f);
-        colorButtons[3] = new Color(0.0f, 1.0f, 0.0f);
+        colorButtons[0] = new Color(1.0f, 0.0f, 0.0f); // Vermelho
+        colorButtons[1] = new Color(0.0f, 0.0f, 1.0f); // Azul
+        colorButtons[2] = new Color(1.0f, 0.92f, 0.016f); // Amarelo
+        colorButtons[3] = new Color(0.0f, 1.0f, 0.0f); // Verde
         //inicializando a lista de letras
         //letters = new List<Letter>();
         //inicializando a lista de piadas
@@ -65,10 +65,9 @@ public class GameManager : MonoBehaviour
         }
 
         // Ensure letters is initialized
-        if (letters == null)
-        {
-            letters = new List<Letter>();
-        }
+        
+        letters = new List<Letter>();
+        
 
         Debug.Log(currentJoke);
 
@@ -99,6 +98,8 @@ public class GameManager : MonoBehaviour
         
     }
 
+
+
     public void UpdateWordText()
     {
         // Atualiza o texto da palavra
@@ -112,5 +113,56 @@ public class GameManager : MonoBehaviour
             }
         }
     }   
+    
+    private void Update() {
+        if(Input.GetKeyDown(KeyCode.A)){
+            VerificaCor(0);
+            
+        }
+        if(Input.GetKeyDown(KeyCode.S)){
+            VerificaCor(1);
+            
+        }
+        if(Input.GetKeyDown(KeyCode.D)){
+            VerificaCor(2);
+            
+        }
+        if(Input.GetKeyDown(KeyCode.F)){
+            VerificaCor(3);
+            
+        }
+        UpdateWordText();
+    }
+
+    public void VerificaCor(int index){
+        Debug.Log(a);
+        if (a < letters.Count){
+            Letter letter = letters[a];
+            if (letters[a].letter == ' ')
+            {
+                a++;
+            }
+            if (letters[a].color == colorButtons[index])
+            {
+                letter.isCorrect = true;
+            }
+            else
+            {
+                letter.isCorrect = false;
+                aumentaDificuldade();
+            }
+            letters[a] = letter;
+            a++;
+            
+        }else{
+            Debug.LogError("Index out of range");
+            a=0;
+        }
+        UpdateWordText();
+    }
+
+    public void aumentaDificuldade(){
+        Debug.Log("Aumentando dificuldade");
+    }
 }
 

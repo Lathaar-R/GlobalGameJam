@@ -386,7 +386,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 722920850}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e8994ad4f876d204ebde5891f62bccd0, type: 3}
   m_Name: 
@@ -508,6 +508,7 @@ GameObject:
   - component: {fileID: 1023218377}
   - component: {fileID: 1023218376}
   - component: {fileID: 1023218375}
+  - component: {fileID: 1023218378}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -651,7 +652,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1023218372}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d87d43528592a104a9dc01e64aef9911, type: 3}
   m_Name: 
@@ -661,6 +662,21 @@ MonoBehaviour:
   minVelocity: 1
   distanceToStop: 0.8
   velPow: 0.85
+--- !u!114 &1023218378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1023218372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8994ad4f876d204ebde5891f62bccd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colorButtons: []
+  jokes: []
+  wordText: {fileID: 1356630186}
 --- !u!1 &1024389119
 GameObject:
   m_ObjectHideFlags: 0
@@ -678,7 +694,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1024389120
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -914,7 +930,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1317944279
 Transform:
   m_ObjectHideFlags: 0
@@ -942,8 +958,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8500447f0f07d641a180e045dc7f94b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coolDown: 1
   projectilesPrefabs: []
+  projectileProbabilities: []
   projectilePool: []
+  wallsLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &1317944281
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -956,8 +980,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8500447f0f07d641a180e045dc7f94b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coolDown: 1
   projectilesPrefabs: []
+  projectileProbabilities: []
   projectilePool: []
+  wallsLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &1356630184
 GameObject:
   m_ObjectHideFlags: 0

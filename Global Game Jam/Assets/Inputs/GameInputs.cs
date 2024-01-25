@@ -22,9 +22,104 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
     {
         asset = InputActionAsset.FromJson(@"{
     ""name"": ""GameInputs"",
-    ""maps"": [],
+    ""maps"": [
+        {
+            ""name"": ""Player"",
+            ""id"": ""8d751179-0506-4278-bc98-7e41bd47f1c7"",
+            ""actions"": [
+                {
+                    ""name"": ""Azul"",
+                    ""type"": ""Button"",
+                    ""id"": ""7b3cb7a8-be7b-44a3-a977-f57e08a25f45"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Vermelho"",
+                    ""type"": ""Button"",
+                    ""id"": ""84738dbe-0bbf-4a4e-9068-c8e5a4711268"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Amarelo"",
+                    ""type"": ""Button"",
+                    ""id"": ""f9b974f3-993a-4139-a430-1b909719eb86"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Verde"",
+                    ""type"": ""Button"",
+                    ""id"": ""6cd00b76-5007-4bf0-855d-05ed2f5ecb46"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""29e46e0d-dfe9-4942-a2cc-5a1ebd3de8ad"",
+                    ""path"": ""<Keyboard>/#(A)"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Azul"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f109f1a2-a245-4dbc-b6f5-75462362c939"",
+                    ""path"": ""<Keyboard>/#(S)"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Vermelho"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a075e966-d9ac-487b-b150-8a0d8ab8340a"",
+                    ""path"": ""<Keyboard>/#(D)"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Amarelo"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""412d7f1d-48a1-464e-b9be-2c08937bfd4f"",
+                    ""path"": ""<Keyboard>/#(F)"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Verde"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        }
+    ],
     ""controlSchemes"": []
 }");
+        // Player
+        m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
+        m_Player_Azul = m_Player.FindAction("Azul", throwIfNotFound: true);
+        m_Player_Vermelho = m_Player.FindAction("Vermelho", throwIfNotFound: true);
+        m_Player_Amarelo = m_Player.FindAction("Amarelo", throwIfNotFound: true);
+        m_Player_Verde = m_Player.FindAction("Verde", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -81,5 +176,82 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
     public int FindBinding(InputBinding bindingMask, out InputAction action)
     {
         return asset.FindBinding(bindingMask, out action);
+    }
+
+    // Player
+    private readonly InputActionMap m_Player;
+    private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
+    private readonly InputAction m_Player_Azul;
+    private readonly InputAction m_Player_Vermelho;
+    private readonly InputAction m_Player_Amarelo;
+    private readonly InputAction m_Player_Verde;
+    public struct PlayerActions
+    {
+        private @GameInputs m_Wrapper;
+        public PlayerActions(@GameInputs wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Azul => m_Wrapper.m_Player_Azul;
+        public InputAction @Vermelho => m_Wrapper.m_Player_Vermelho;
+        public InputAction @Amarelo => m_Wrapper.m_Player_Amarelo;
+        public InputAction @Verde => m_Wrapper.m_Player_Verde;
+        public InputActionMap Get() { return m_Wrapper.m_Player; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(PlayerActions set) { return set.Get(); }
+        public void AddCallbacks(IPlayerActions instance)
+        {
+            if (instance == null || m_Wrapper.m_PlayerActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_PlayerActionsCallbackInterfaces.Add(instance);
+            @Azul.started += instance.OnAzul;
+            @Azul.performed += instance.OnAzul;
+            @Azul.canceled += instance.OnAzul;
+            @Vermelho.started += instance.OnVermelho;
+            @Vermelho.performed += instance.OnVermelho;
+            @Vermelho.canceled += instance.OnVermelho;
+            @Amarelo.started += instance.OnAmarelo;
+            @Amarelo.performed += instance.OnAmarelo;
+            @Amarelo.canceled += instance.OnAmarelo;
+            @Verde.started += instance.OnVerde;
+            @Verde.performed += instance.OnVerde;
+            @Verde.canceled += instance.OnVerde;
+        }
+
+        private void UnregisterCallbacks(IPlayerActions instance)
+        {
+            @Azul.started -= instance.OnAzul;
+            @Azul.performed -= instance.OnAzul;
+            @Azul.canceled -= instance.OnAzul;
+            @Vermelho.started -= instance.OnVermelho;
+            @Vermelho.performed -= instance.OnVermelho;
+            @Vermelho.canceled -= instance.OnVermelho;
+            @Amarelo.started -= instance.OnAmarelo;
+            @Amarelo.performed -= instance.OnAmarelo;
+            @Amarelo.canceled -= instance.OnAmarelo;
+            @Verde.started -= instance.OnVerde;
+            @Verde.performed -= instance.OnVerde;
+            @Verde.canceled -= instance.OnVerde;
+        }
+
+        public void RemoveCallbacks(IPlayerActions instance)
+        {
+            if (m_Wrapper.m_PlayerActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IPlayerActions instance)
+        {
+            foreach (var item in m_Wrapper.m_PlayerActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_PlayerActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public PlayerActions @Player => new PlayerActions(this);
+    public interface IPlayerActions
+    {
+        void OnAzul(InputAction.CallbackContext context);
+        void OnVermelho(InputAction.CallbackContext context);
+        void OnAmarelo(InputAction.CallbackContext context);
+        void OnVerde(InputAction.CallbackContext context);
     }
 }

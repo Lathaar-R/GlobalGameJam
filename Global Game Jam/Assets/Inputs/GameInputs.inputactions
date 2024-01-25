@@ -1,1 +1,94 @@
-{}
+{
+    "name": "GameInputs",
+    "maps": [
+        {
+            "name": "Player",
+            "id": "8d751179-0506-4278-bc98-7e41bd47f1c7",
+            "actions": [
+                {
+                    "name": "Azul",
+                    "type": "Button",
+                    "id": "7b3cb7a8-be7b-44a3-a977-f57e08a25f45",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Vermelho",
+                    "type": "Button",
+                    "id": "84738dbe-0bbf-4a4e-9068-c8e5a4711268",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Amarelo",
+                    "type": "Button",
+                    "id": "f9b974f3-993a-4139-a430-1b909719eb86",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Verde",
+                    "type": "Button",
+                    "id": "6cd00b76-5007-4bf0-855d-05ed2f5ecb46",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "29e46e0d-dfe9-4942-a2cc-5a1ebd3de8ad",
+                    "path": "<Keyboard>/#(A)",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Azul",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f109f1a2-a245-4dbc-b6f5-75462362c939",
+                    "path": "<Keyboard>/#(S)",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Vermelho",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a075e966-d9ac-487b-b150-8a0d8ab8340a",
+                    "path": "<Keyboard>/#(D)",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Amarelo",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "412d7f1d-48a1-464e-b9be-2c08937bfd4f",
+                    "path": "<Keyboard>/#(F)",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Verde",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
