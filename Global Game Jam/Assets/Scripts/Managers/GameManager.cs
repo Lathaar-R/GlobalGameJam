@@ -49,9 +49,9 @@ public class GameManager : MonoBehaviour
         //jokes[1] = "O que o pato disse para a pata? R: Num Vem Quá";
         //jokes[2] = "O que o pato disse para a pata? R: Será que Vem Quá"; 
         
-        jokes[0] = "Oqueopatodisseparaapata?R:VemQuá";
-        jokes[1] = "Oqueopatodisseparaapata?R:NumVemQuá";
-        jokes[2] = "Oqueopatodisseparaapata?R:SeráueVemQuá";
+        jokes[0] = "O que o pato disse para a pata? R: Vem Quá";
+        jokes[1] = "O que o pato disse para a pata? R:Num Vem Quá";
+        jokes[2] = "O que o pato disse para a pata? R:Será que Vem Quá";
 
         // Escolhe uma palavra aleatória
         currentJoke = GetRandomJoke();
