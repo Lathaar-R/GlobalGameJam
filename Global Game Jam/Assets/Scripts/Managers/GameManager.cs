@@ -132,37 +132,56 @@ public class GameManager : MonoBehaviour
             
         }
         UpdateWordText();
+        if(Input.GetKeyDown(KeyCode.Space)){
+            StartGame();
+        }
     }
 
     public void VerificaCor(int index){
         Debug.Log(a);
         if (a < letters.Count){
             Letter letter = letters[a];
-            if (letters[a].letter == ' ')
-            {
-                a++;
-            }
+            
             if (letters[a].color == colorButtons[index])
             {
                 letter.isCorrect = true;
             }
             else
             {
-                letter.isCorrect = false;
-                aumentaDificuldade();
+                letter.isCorrect = true;
+                //aumentaDificuldade();
             }
             letters[a] = letter;
             a++;
-            
+            if (letters[a].letter == ' ')
+            {
+                a++;
+            }
         }else{
             Debug.LogError("Index out of range");
+            StartGame();
             a=0;
         }
         UpdateWordText();
     }
 
     public void aumentaDificuldade(){
+        //Fazendo uma pausa de 0.5 segundos
+        StartCoroutine(PausaPorUmSegundo());
+
+
         Debug.Log("Aumentando dificuldade");
+    }
+    IEnumerator PausaPorUmSegundo()
+    {
+        
+
+        // Aguarda por 1 segundo
+        yield return new WaitForSeconds(1.0f);
+
+        
+
+        // Adicione aqui o código que você deseja executar após a pausa de 1 segundo
     }
 }
 
