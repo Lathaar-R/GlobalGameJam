@@ -9,15 +9,28 @@ using Random = UnityEngine.Random;
 public class LauncherScript : MonoBehaviour
 {
     private float timer;
+    private float timer2;
+    private int index;
     private Func<Vector2, float, bool> shootType;
+    private Func<float, float> CoolDownCalculation;
     [SerializeField] private float coolDown = 1;
+    [Header("Probabilidades: Aleatório, Perto, Preciso (Soma deve ser 1)")]
+    [SerializeField] private float[] shootProbabilities;
     [SerializeField] private GameObject[] projectilesPrefabs;
     [SerializeField] private float[] projectileProbabilities;
+    [SerializeField] private float[] projectileAppearTime;
     [SerializeField] private List<GameObject> projectilePool;
     [SerializeField] private LayerMask wallsLayer;
     [SerializeField] private LayerMask playerLayer;
 
+    
+    private void Awake() {
+        CoolDownCalculation = (x) => x;
 
+        GameController.Instance.endGame += () => {
+            gameObject.SetActive(false);
+        };
+    }
 
     private void Start()
     {
@@ -25,9 +38,12 @@ public class LauncherScript : MonoBehaviour
 
         for (int i = 0; i < projectilesPrefabs.Length; i++)
         {
+            if(projectileAppearTime[i] > 0) continue;
+
+            index++;
             for (int j = 0; j < projectileProbabilities[i]; j++)
             {
-                GameObject projectile = Instantiate(projectilesPrefabs[i % projectilesPrefabs.Length], gameObject.transform);
+                GameObject projectile = Instantiate(projectilesPrefabs[i % projectilesPrefabs.Length], gameObject.transform.position, Quaternion.identity);
                 projectile.SetActive(false);
                 projectilePool.Add(projectile);
             }
@@ -41,36 +57,52 @@ public class LauncherScript : MonoBehaviour
     private void Update()
     {
         timer -= Time.deltaTime;
+        timer2 += Time.deltaTime;
 
-        if (timer <= 0)
+        if(timer <= 0)
         {
             timer = CalculateCoolDown();
             Shoot();
+        }
+
+        for(int i = index; i < projectilesPrefabs.Length; i++)
+        {
+            if(timer2 < projectileAppearTime[i]) break;
+
+            index++;
+
+            for (int j = 0; j < projectileProbabilities[i]; j++)
+            {
+                GameObject projectile = Instantiate(projectilesPrefabs[i % projectilesPrefabs.Length], gameObject.transform.position, Quaternion.identity);
+                projectile.SetActive(false);
+                projectilePool.Add(projectile);
+            } 
         }
     }
 
 
     private void Shoot()
     {
-        switch (Random.Range(0, 2))
-        {
-            case 0:
-                shootType = RandomShoot;
-                break;
+        var r = Random.value;
 
-            case 1:
-                shootType = PreciseShoot;
-                break;
-            default:
-                shootType = RandomShoot;
-                break;
+        if(r < shootProbabilities[0])
+        {
+            shootType = RandomShoot;
         }
+        else if(r < shootProbabilities[1])
+        {
+            shootType = NearShoot;
+        }
+        else
+        {
+            shootType = PreciseShoot;
+        }
+        
 
         var pList = projectilePool.Where(p => !p.activeSelf).ToList();
 
         var projectile = pList[Random.Range(0, pList.Count)];
 
-        projectile.SetActive(true);
         Collider2D pc = projectile.GetComponent<Collider2D>();
         Vector2 target;
 
@@ -98,10 +130,13 @@ public class LauncherScript : MonoBehaviour
 
         } while (shootType(target, Mathf.Max(pc.bounds.extents.x, pc.bounds.extents.y)));
 
-        projectile.GetComponent<ProjectileScript>().Target = target;
+        
+
+        var projc = projectile.GetComponent<ProjectileScript>();
+        projc.Target = target;
         projectile.transform.position = new Vector3(target.x, Random.Range(-6, -7.5f), 0);
 
-
+        projectile.SetActive(true);
     }
 
     private void RandomShoot()
@@ -114,14 +149,28 @@ public class LauncherScript : MonoBehaviour
         return Physics2D.OverlapCircle(target, radius, wallsLayer) != null;
     }
 
+    private bool NearShoot(Vector2 target, float radius)
+    {
+        return Physics2D.OverlapCircle(target, radius * 5, playerLayer) != null;
+    }
+
     private bool PreciseShoot(Vector2 target, float radius)
     {
         return Physics2D.OverlapCircle(target, radius, playerLayer) == null;
     }
 
+    public void ChangeCoolDown(float value)
+    {
+        coolDown = value;
+    }
+
+    public void ChangeCoolDownCalculation(Func<float, float> action)
+    {
+        CoolDownCalculation = action;
+    }
 
     private float CalculateCoolDown()
     {
-        return Random.Range(coolDown * 0.5f, coolDown * 1.5f);
+        return CoolDownCalculation(coolDown);
     }
 }

@@ -14,10 +14,10 @@ TagManager:
   - Walls
   - Projectile
   - Player
-  - 
-  - 
-  - 
-  - 
+  - LimbGround0
+  - LimbGround1
+  - LimbGround2
+  - Limb
   - 
   - 
   - 
