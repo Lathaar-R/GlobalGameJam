@@ -2024,7 +2024,7 @@ Rigidbody2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 951
+    m_Bits: 8119
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -3242,9 +3242,9 @@ MonoBehaviour:
   foot:
   - {fileID: 581652818}
   - {fileID: 55129310}
-  maxDistance: 0.3
-  overShoot: 0.2
-  walkSpeed: 0.15
+  maxDistance: 0.25
+  overShoot: 0.17
+  walkSpeed: 0.13
   footPositions:
   - {fileID: 8268754180427167550}
   - {fileID: 1001864811}
