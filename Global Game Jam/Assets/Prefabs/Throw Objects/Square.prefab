@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3134721181786479010}
   - component: {fileID: 1231523278915672013}
   - component: {fileID: 1831724504007218877}
-  - component: {fileID: 7780638201457170805}
+  - component: {fileID: 491483009033904983}
   m_Layer: 7
   m_Name: Square
   m_TagString: Untagged
@@ -115,7 +115,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -131,7 +131,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &7780638201457170805
+--- !u!114 &491483009033904983
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -140,34 +140,51 @@ MonoBehaviour:
   m_GameObject: {fileID: 5298156250770820214}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a0a263a787d35c4c8cbf6af80f979c4, type: 3}
+  m_Script: {fileID: 11500000, guid: 6b798501fc80fb243b6d3491597beab2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   targetObjectPrefab: {fileID: 1256783977477465844, guid: 44d42dc9dee9d1d42bd1cd64396e088a, type: 3}
-  speed: 1
+  speed: 0.7
   height: 2
   growScale: 1.2
+  rotationSpeed: 0.4
   targetScalling: 1
+  distanceToDamage: 0.5
+  contactFilter:
+    useTriggers: 0
+    useLayerMask: 1
+    useDepth: 0
+    useOutsideDepth: 0
+    useNormalAngle: 0
+    useOutsideNormalAngle: 0
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 256
+    minDepth: 0
+    maxDepth: 0
+    minNormalAngle: 0
+    maxNormalAngle: 0
+  hitPrefab: {fileID: 3610239518015716781, guid: 423a600fc11513345a7b5aaf1239c14a, type: 3}
   curve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0.0013465881
+      time: 0
       value: 0
-      inSlope: 1.5801134
-      outSlope: 1.5801134
+      inSlope: 0
+      outSlope: 0
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.05652759
+      outWeight: 0
     - serializedVersion: 3
       time: 1
-      value: 0.9952812
-      inSlope: 1.298637
-      outSlope: 1.298637
+      value: 1
+      inSlope: 1.0354854
+      outSlope: 1.0354854
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.05248993
+      inWeight: 0.05921936
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
