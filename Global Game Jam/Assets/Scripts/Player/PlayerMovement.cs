@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     #region Variaveis
     private Rigidbody2D rb;
     private float curMinVelocity;
+    private bool isMoving;
 
     //Serializadas 
     [SerializeField] private float acceleration = 3;
@@ -27,6 +28,14 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+
+        GameController.Instance.startGamePlay += OnStartGamePlay;
+        GameController.Instance.endGamePlay += OnEndGamePlay;
+    }
+
+    private void OnDisable() {
+        GameController.Instance.startGamePlay -= OnStartGamePlay;
+        GameController.Instance.endGamePlay -= OnEndGamePlay;
     }
 
     void Start()
@@ -34,9 +43,22 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
+    private void OnStartGamePlay()
+    {
+        isMoving = true;
+    }
+
+    private void OnEndGamePlay()
+    {
+        isMoving = false;
+        this.enabled = false;
+    }
+
 
     void FixedUpdate()
     {
+        if (!isMoving) return;
+
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
 
         Vector2 direction = (mousePosition - rb.position);

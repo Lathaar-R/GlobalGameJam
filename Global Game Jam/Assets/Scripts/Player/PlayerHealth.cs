@@ -33,7 +33,7 @@ public class PlayerHealth : MonoBehaviour
     void TakeDamage(int damage)
     {
         Debug.Log("Player took " + damage + " damage");
-        health -= damage;
+        health--;
 
         if (health > 0)
         {
@@ -64,6 +64,12 @@ public class PlayerHealth : MonoBehaviour
             limb2.gameObject.layer = LayerMask.NameToLayer("Limb");
 
             index++;
+
+            damage--;
+            if (damage > 0)
+            {
+                TakeDamage(damage);
+            }
         }
         else
         {
@@ -86,9 +92,9 @@ public class PlayerHealth : MonoBehaviour
 
             limbGround.layer = LayerMask.NameToLayer("LimbGround" + index);
 
-            walkAnimationScript.enabled = false;
-            balanceScript.enabled = false;
-            playerMovementScript.enabled = false;
+            // walkAnimationScript.enabled = false;
+            // balanceScript.enabled = false;
+            // playerMovementScript.enabled = false;
 
             var leg = limbs[0];
             var leg2 = limbs[1];
@@ -117,7 +123,7 @@ public class PlayerHealth : MonoBehaviour
             leg12.excludeLayers = LayerMask.GetMask("Player", "Projectile", "LimbGround" + (index + 1) % 3,  "LimbGround" + (index + 2) % 3);
             body.excludeLayers = LayerMask.GetMask("Player", "Projectile", "LimbGround" + (index + 1) % 3,  "LimbGround" + (index + 2) % 3);
 
-            GameController.Instance.EndGame();
+            GameController.Instance.EndGamePlay();
         }
     }
 }

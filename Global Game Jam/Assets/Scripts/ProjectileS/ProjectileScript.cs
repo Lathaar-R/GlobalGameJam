@@ -60,7 +60,10 @@ public abstract class ProjectileScript : MonoBehaviour
             targetObject.transform.position = target;
             //Debug.Log(Target);
             targetScaleProportion = targetObject.transform.localScale.x / targetObject.transform.localScale.y;
+            targetObject.transform.localScale = Vector2.zero;   
         }
+
+        
     }
 
     // Update is called once per frame
