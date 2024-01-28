@@ -2142,6 +2142,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8500447f0f07d641a180e045dc7f94b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  divisor: 500
+  maxSub: 0.1
   minCoolDown: 0.5
   maxCoolDown: 5
   coolDown: 3
@@ -4697,8 +4699,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.18}
-  m_Size: {x: 0.79, y: 1.75}
+  m_Offset: {x: 0, y: 0.24}
+  m_Size: {x: 0.79, y: 1.96}
   m_Direction: 0
 --- !u!61 &5016211350878841132
 BoxCollider2D:
