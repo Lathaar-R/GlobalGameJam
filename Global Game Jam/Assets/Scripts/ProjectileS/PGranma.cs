@@ -12,7 +12,7 @@ public class PGranma : ProjectileScript
     protected override void Awake()
     {
         base.Awake();
-        player = GameObject.Find("Body");
+        player = GameObject.Find("HitBox");
     }
 
     protected override void Shoot()

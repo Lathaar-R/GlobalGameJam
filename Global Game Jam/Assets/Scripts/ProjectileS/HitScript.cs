@@ -7,20 +7,34 @@ public class HitScript : MonoBehaviour
     [SerializeField] private float fadeOutTime;
     private SpriteRenderer spriteRenderer;
     private float time;
-    
-    
-    private void Awake() {
+    private bool isFading;
+
+    private void Awake()
+    {
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    
+
     void Update()
     {
         time += Time.deltaTime;
-        spriteRenderer.color = new Color(1, 1, 1, Mathf.Lerp(1, 0, time / fadeOutTime));
-        if(time > fadeOutTime )
+
+        if (isFading)
         {
-            Destroy(gameObject);
+
+            spriteRenderer.color = new Color(1, 1, 1, Mathf.Lerp(1, 0, time / fadeOutTime));
+            if (time > fadeOutTime)
+            {
+                Destroy(gameObject);
+            }
+        }
+        else
+        {
+            if (time > 1)
+            {
+                time = 0;
+                isFading = true;
+            }
         }
     }
 }
