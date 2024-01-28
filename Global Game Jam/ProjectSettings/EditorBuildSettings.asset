@@ -4,5 +4,14 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Menu.unity
+    guid: 086d3fabc2740694cac738ae0f2224e3
+  - enabled: 1
+    path: Assets/Scenes/Tutorial.unity
+    guid: 4384c04a73060374b93b2c83c552eac2
+  - enabled: 1
+    path: Assets/Scenes/Rodrigo.unity
+    guid: 9712efe5647110b4e881cd9fffbf6639
   m_configObjects: {}
