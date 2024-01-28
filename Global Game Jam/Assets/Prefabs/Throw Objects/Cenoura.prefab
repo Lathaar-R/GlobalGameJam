@@ -157,7 +157,7 @@ MonoBehaviour:
   growScale: 1.2
   rotationSpeed: 0.4
   targetScalling: 1
-  distanceToDamage: 0.3
+  distanceToDamage: 0.1
   contactFilter:
     useTriggers: 1
     useLayerMask: 1
