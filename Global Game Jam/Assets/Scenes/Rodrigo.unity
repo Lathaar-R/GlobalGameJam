@@ -316,7 +316,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 21}
   m_SizeDelta: {x: 357, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &129674416
@@ -343,8 +343,8 @@ MonoBehaviour:
 
     0000'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8ec5165fcd807814bbfb9d57e1618a0b, type: 2}
+  m_sharedMaterial: {fileID: -389039349842192533, guid: 8ec5165fcd807814bbfb9d57e1618a0b, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -578,11 +578,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: e6f00c7886a343b4ea4a366d9c24fe16, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.404
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -1688,6 +1688,20 @@ MonoBehaviour:
   - 'There''s something bad about graduation jokes, they don''t have a "ponche" line '
   - 'What the road said to the Wheel? You look tired '
   - 'pencils can''t fight. They always end in a draw '
+  paidas:
+  - Qual a cidade que nao aceita taxi? Uberlandia
+  - Voce sabe qual e o rei dos queijos? O requeijao
+  - O que o Batman tem no coracao? Bat-mento
+  - Firme? nao, futebor
+  - Como dar no em duas motos? Voce pega Yamaha
+  - A agua foi presa porque ela matou a sede.
+  - A agua foi presa porque ela matou a sede.
+  - "Qual e o contr\xE1rio de volatil? Vem aqui sobrinho  "
+  - "O que a zebra disse para a pulga? Voc\xEA esta na minha lista negra."
+  - O que e um gordo subindo pra cima? Uma redondancia
+  - "Sabe o que o n\xFAmero 0 disse ao numero 8? Que bonito o seu cinto"
+  - O que e um gordo subindo pra cima? Uma redondancia
+  - Sabe o que o numero 0 disse ao numero 8? Que bonito o seu cinto
   wordText: {fileID: 1216805253}
 --- !u!4 &1017169951
 Transform:
@@ -1733,7 +1747,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.265
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -2443,8 +2457,24 @@ MonoBehaviour:
   - {fileID: 146359667}
   - {fileID: 611847257}
   - {fileID: 1099230605}
-  audioClips: []
-  audioClipsNames: []
+  audioClips:
+  - {fileID: 8300000, guid: 932117da4e43230448ae0742d47d244c, type: 3}
+  - {fileID: 8300000, guid: 692f21647e734d74298fbc9090dcfa72, type: 3}
+  - {fileID: 8300000, guid: eed588dedb274bf4c9d1c6d1c8e5548f, type: 3}
+  - {fileID: 8300000, guid: 422762829ca031647a93c196f1a349ae, type: 3}
+  - {fileID: 8300000, guid: acfdb668fe1ee1f4d9916f51dd1edfcc, type: 3}
+  - {fileID: 8300000, guid: 12ae2f860deaa3149af976a863185e84, type: 3}
+  - {fileID: 8300000, guid: 447d0b9427d00f54b8d78f799a25258f, type: 3}
+  - {fileID: 8300000, guid: 21738eebfc545e6449c27540e58c5e8e, type: 3}
+  audioClipsNames:
+  - ouch
+  - ouch2
+  - tomate
+  - bigorna
+  - boo
+  - risadas
+  - acerto
+  - erro
   mainMusic: {fileID: 179065042}
   scoreText: {fileID: 524078112}
   finalScore: {fileID: 1706356339}
@@ -3069,8 +3099,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 4, y: 294.43}
-  m_SizeDelta: {x: 713.8, y: 200}
+  m_AnchoredPosition: {x: -9, y: 151}
+  m_SizeDelta: {x: 400, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1706356341
 MonoBehaviour:
@@ -3085,7 +3115,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.2830189, g: 0.2830189, b: 0.2830189, a: 1}
+  m_Color: {r: 0.11454255, g: 0.20881024, b: 0.6226415, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3501,7 +3531,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1935564537
 RectTransform:
   m_ObjectHideFlags: 0

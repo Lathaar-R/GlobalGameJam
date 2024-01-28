@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PDev : ProjectileScript
 {
-        [SerializeField] private GameObject[] hitPrefabs;
+    [SerializeField] private GameObject[] hitPrefabs;
     protected override void Shoot()
     {
         time += Time.deltaTime * speed;
@@ -39,13 +39,18 @@ public class PDev : ProjectileScript
         if (Mathf.Abs(transform.position.y - target.y) < distanceToDamage)
         {
             var hit = Physics2D.OverlapCircle(transform.position, Mathf.Max(collider.bounds.extents.x, collider.bounds.extents.y), contactFilter.layerMask);
-            if(hit != null)
+            if (hit != null)
             {
                 GameController.Instance.DamagePlayer(1);
 
                 gameObject.transform.position = Vector2.down * 100;
                 TargetObject.transform.position = Vector2.down * 100;
                 gameObject.SetActive(false);
+
+                if (UnityEngine.Random.value < 0.5f)
+                    GameController.Instance.PlayAudio("ouch");
+                else
+                    GameController.Instance.PlayAudio("ouch2");
             }
             if (Mathf.Abs(transform.position.y - target.y) < 0.1f)
             {
@@ -54,6 +59,8 @@ public class PDev : ProjectileScript
                 gameObject.transform.position = Vector2.down * 100;
                 TargetObject.transform.position = Vector2.down * 100;
                 gameObject.SetActive(false);
+
+                GameController.Instance.PlayAudio("bigorna");
             }
         }
     }

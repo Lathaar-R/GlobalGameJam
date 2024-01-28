@@ -117,6 +117,7 @@ public class GameController : MonoBehaviour
         finalScore.SetActive(true);
         endGamePlay?.Invoke();
         finalScoreText.text = "Final Score:\n" + score.ToString() + "\n Press space to menu";
+        GameController.Instance.PlayAudio("boo");  
 
         EndGame();
     }

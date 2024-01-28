@@ -1,0 +1,53 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using System;
+
+public class Linguagem : MonoBehaviour
+{
+
+    public bool portugues;
+    public Image check;
+
+
+    private void Awake()
+    {
+
+        DontDestroyOnLoad(gameObject);
+        SceneManager.sceneLoaded += OnSceneLoaded;
+
+        var c = GameObject.Find("Check");
+
+        if (c != null)
+        {
+            check = c.GetComponent<Image>();
+            check.enabled = portugues;
+        }
+    }
+
+    private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
+    {
+        var c = GameObject.Find("Check");
+
+        if (c != null)
+        {
+            check = c.GetComponent<Image>();
+        }
+    }
+
+    public void SetPortugues()
+    {
+        portugues = !portugues;
+        Debug.Log("Portugues: " + portugues);
+
+        if (check != null)
+        {
+            check.enabled = portugues;
+        }
+    }
+
+
+
+}

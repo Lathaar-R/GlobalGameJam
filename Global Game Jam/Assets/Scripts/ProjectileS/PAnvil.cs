@@ -46,6 +46,11 @@ public class PAnvil : ProjectileScript
                 gameObject.transform.position = Vector2.down * 100;
                 TargetObject.transform.position = Vector2.down * 100;
                 gameObject.SetActive(false);
+
+                if(UnityEngine.Random.value < 0.5f)
+                    GameController.Instance.PlayAudio("ouch");
+                else
+                    GameController.Instance.PlayAudio("ouch2");
             }
             if (Mathf.Abs(transform.position.y - target.y) < 0.1f)
             {
@@ -54,6 +59,8 @@ public class PAnvil : ProjectileScript
                 gameObject.transform.position = Vector2.down * 100;
                 TargetObject.transform.position = Vector2.down * 100;
                 gameObject.SetActive(false);
+
+                GameController.Instance.PlayAudio("bigorna");
             }
         }
     }
