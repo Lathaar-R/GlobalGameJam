@@ -63,7 +63,7 @@ public class PGranma : ProjectileScript
             if (Mathf.Abs(transform.position.y - target.y) < 0.1f)
             {
                 Instantiate(hitPrefab, transform.position, Quaternion.identity);
-
+                
                 gameObject.transform.position = Vector2.down * 100;
                 TargetObject.transform.position = Vector2.down * 100;
                 gameObject.SetActive(false);
