@@ -1688,9 +1688,14 @@ MonoBehaviour:
   - 'There''s something bad about graduation jokes, they don''t have a "ponche" line '
   - 'What the road said to the Wheel? You look tired '
   - 'pencils can''t fight. They always end in a draw '
+<<<<<<< HEAD
   paidas:
   - dasdasdas
   - sdasdasda
+=======
+  - Why did the picture go to jail? He was framed
+  - 'I don''t like tightrope I just can''t stand it '
+>>>>>>> origin/Vilela
   wordText: {fileID: 1216805253}
 --- !u!4 &1017169951
 Transform:
@@ -2446,8 +2451,18 @@ MonoBehaviour:
   - {fileID: 146359667}
   - {fileID: 611847257}
   - {fileID: 1099230605}
-  audioClips: []
-  audioClipsNames: []
+  audioClips:
+  - {fileID: 8300000, guid: 953a655a4eae42e4aac698a40d311587, type: 3}
+  - {fileID: 8300000, guid: a563f3d2e8e94a641a6ab8ad19938a78, type: 3}
+  - {fileID: 8300000, guid: acfdb668fe1ee1f4d9916f51dd1edfcc, type: 3}
+  - {fileID: 8300000, guid: eed588dedb274bf4c9d1c6d1c8e5548f, type: 3}
+  - {fileID: 8300000, guid: c2408f176b342924a944aaa66cdf106e, type: 3}
+  audioClipsNames:
+  - anvilFalling
+  - BackgroundPeople
+  - Vaia
+  - TomatoFalling
+  - WatermelonFalling
   mainMusic: {fileID: 179065042}
   scoreText: {fileID: 524078112}
   finalScore: {fileID: 1706356339}
