@@ -24,12 +24,15 @@ public class GameManager : MonoBehaviour
 
     int a = 0;
     public string[] jokes;
+    public string[] paidas;
     // Referência para os textos de pontuação e palavra
 
     private bool paused = true;
     private string currentJoke;
     private int score;
     public TextMeshProUGUI wordText;
+
+    private Linguagem linguagem;
 
 
     void Start()
@@ -38,6 +41,7 @@ public class GameManager : MonoBehaviour
         GameController.Instance.startGamePlay += OnStartGamePlay;
         GameController.Instance.endGamePlay += OnEndGamePlay;
 
+        linguagem = FindObjectOfType<Linguagem>();
     }
 
     private void OnDisable()
@@ -111,7 +115,7 @@ public class GameManager : MonoBehaviour
         {
             int randomIndex = random.Next(0, colorButtons.Length);
             Color cor = colorButtons[randomIndex];
-            if (currentJoke[i] == '?' || currentJoke[i] == '.' || currentJoke[i] == '!' || currentJoke[i] == ',' || currentJoke[i] == ':' || currentJoke[i] == ';' || currentJoke[i] == '-')
+            if (currentJoke[i] == '?' || currentJoke[i] == '.' || currentJoke[i] == '!' || currentJoke[i] == ',' || currentJoke[i] == ':' || currentJoke[i] == ';' || currentJoke[i] == '-' || currentJoke[i] == '\'')
                 cor = Color.black;
 
 
@@ -127,12 +131,24 @@ public class GameManager : MonoBehaviour
 
     string GetRandomJoke()
     {
-        //gerando um numero aleatorio ate o tamanho da lista de piadas
-        int randomIndex = random.Next(jokes.Length);
+        if (linguagem.portugues)
+        {
+            //gerando um numero aleatorio ate o tamanho da lista de piadas
+            int randomIndex = random.Next(paidas.Length);
 
-        //retornando a piada na posição randomIndex
-        return jokes[randomIndex];
+            //retornando a piada na posição randomIndex
+            return paidas[randomIndex];
+        }
+        else
+        {
+            //gerando um numero aleatorio ate o tamanho da lista de piadas
+            int randomIndex = random.Next(jokes.Length);
 
+            //retornando a piada na posição randomIndex
+            return jokes[randomIndex];
+        }
+
+        return "ERRO!";
     }
 
 
@@ -198,6 +214,15 @@ public class GameManager : MonoBehaviour
                 aumentaDificuldade(-0.1f);
             }
             letters[a] = letter;
+
+            if (letters[a].letter == ' ' || letters[a].letter == '?' ||
+                   letters[a].letter == '.' || letters[a].letter == '!' ||
+                   letters[a].letter == ',' || letters[a].letter == ':' ||
+                   letters[a].letter == ';' || letters[a].letter == '-' || letters[a].letter == '\'')
+            {
+                a++;
+            }
+
             a++;
 
             if (letters.Count <= a)
@@ -218,11 +243,11 @@ public class GameManager : MonoBehaviour
 
             if (letters.Count <= a)
             {
-                
+
                 GameController.Instance.FinishAJoke();
                 StartCoroutine(PausaDepoisPiada(1));
                 GameController.Instance.AddScore(25);
-                
+
             }
         }
 

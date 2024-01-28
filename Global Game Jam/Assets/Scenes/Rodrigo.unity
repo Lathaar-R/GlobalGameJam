@@ -1688,6 +1688,9 @@ MonoBehaviour:
   - 'There''s something bad about graduation jokes, they don''t have a "ponche" line '
   - 'What the road said to the Wheel? You look tired '
   - 'pencils can''t fight. They always end in a draw '
+  paidas:
+  - dasdasdas
+  - sdasdasda
   wordText: {fileID: 1216805253}
 --- !u!4 &1017169951
 Transform:
