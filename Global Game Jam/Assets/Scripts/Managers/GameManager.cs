@@ -7,7 +7,7 @@ using TMPro; // Importa o pacote TextMeshPro
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private Image[] dialogImages;
-    
+
     // Referência para os botões de cor
     public Color[] colorButtons;
     System.Random random = new System.Random();
@@ -54,6 +54,9 @@ public class GameManager : MonoBehaviour
         {
             dialogImages[i].enabled = false;
         }
+
+
+
     }
 
     private void OnStartGamePlay()
@@ -108,9 +111,9 @@ public class GameManager : MonoBehaviour
         {
             int randomIndex = random.Next(0, colorButtons.Length);
             Color cor = colorButtons[randomIndex];
-            if(currentJoke[i] == '?' || currentJoke[i] == '.' || currentJoke[i] == '!' || currentJoke[i] == ',' || currentJoke[i] == ':' || currentJoke[i] == ';' || currentJoke[i] == '-')
+            if (currentJoke[i] == '?' || currentJoke[i] == '.' || currentJoke[i] == '!' || currentJoke[i] == ',' || currentJoke[i] == ':' || currentJoke[i] == ';' || currentJoke[i] == '-')
                 cor = Color.black;
-            
+
 
             letters.Add(new Letter { letter = currentJoke[i], color = cor, isCorrect = false });
         }
@@ -175,15 +178,11 @@ public class GameManager : MonoBehaviour
 
         }
         UpdateWordText();
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            StartGame();
-        }
     }
 
     public void VerificaCor(int index)
     {
-        Debug.Log(a);
+       // Debug.Log(a);
         if (a < letters.Count)
         {
             Letter letter = letters[a];
@@ -196,7 +195,7 @@ public class GameManager : MonoBehaviour
             else
             {
                 letter.isCorrect = true;
-                aumentaDificuldade();
+                aumentaDificuldade(-0.1f);
             }
             letters[a] = letter;
             a++;
@@ -204,10 +203,10 @@ public class GameManager : MonoBehaviour
             if (letters.Count <= a)
             {
                 GameController.Instance.FinishAJoke();
-                StartCoroutine(PausaDepoisPiada(3));
-                GameController.Instance.AddScore(10);
+                StartCoroutine(PausaDepoisPiada(1));
+                GameController.Instance.AddScore(25);
             }
-            else if (letters[a].letter == ' ' || letters[a].letter == '?' || 
+            else if (letters[a].letter == ' ' || letters[a].letter == '?' ||
                     letters[a].letter == '.' || letters[a].letter == '!' ||
                     letters[a].letter == ',' || letters[a].letter == ':' ||
                     letters[a].letter == ';' || letters[a].letter == '-')
@@ -216,14 +215,14 @@ public class GameManager : MonoBehaviour
             }
             UpdateWordText();
         }
-        
+
     }
 
-    public void aumentaDificuldade()
+    public void aumentaDificuldade(float amount)
     {
         //Fazendo uma pausa de 0.5 segundos
         StartCoroutine(PausaPorUmSegundo(1));
-        GameController.Instance.ChangeDificulty();
+        GameController.Instance.ChangeDificulty(amount);
 
         //Debug.Log("Aumentando dificuldade");
     }
@@ -244,7 +243,7 @@ public class GameManager : MonoBehaviour
         paused = true;
         GameController.Instance.StopFiring();
 
-
+        aumentaDificuldade(-1);
         a = 0;
 
 

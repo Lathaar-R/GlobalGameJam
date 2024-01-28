@@ -5,7 +5,9 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
-using TMPro; 
+using TMPro;
+using UnityEditor.SearchService;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
@@ -15,7 +17,7 @@ public class GameController : MonoBehaviour
     public Action startGamePlay;
     public Action endGame;
     public Action endGamePlay;
-    public Action changeDificulty;
+    public Action<float> changeDificulty;
     public Action finishAJoke;
     public Action stopFiring;
     public Action startFiring;
@@ -30,6 +32,9 @@ public class GameController : MonoBehaviour
     [SerializeField] private String[] audioClipsNames;
     [SerializeField] private AudioSource mainMusic;
     [SerializeField] private TMP_Text scoreText;
+    [SerializeField] private GameObject finalScore;
+    [SerializeField] private TMP_Text finalScoreText;
+
 
     public static GameController Instance
     {
@@ -44,7 +49,7 @@ public class GameController : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject);
+            //DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -56,15 +61,16 @@ public class GameController : MonoBehaviour
     void Start()
     {
         startGame += StartGameCutscene;
+        StartGame();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Keyboard.current.spaceKey.wasPressedThisFrame)
-        {
-            StartGamePlay();
-        }
+        // if(Keyboard.current.spaceKey.wasPressedThisFrame)
+        // {
+        //     StartGamePlay();
+        // }
     }
 
     public int GetScore()
@@ -85,7 +91,20 @@ public class GameController : MonoBehaviour
 
     private IEnumerator StartGameCutsceneCoroutine()
     {
+        do
+        {
+            introBlackScreen.color = new Color(0, 0, 0, introBlackScreen.color.a - 0.01f);
+            yield return new WaitForSeconds(0.001f);
+        } while (introBlackScreen.color.a > 0);
+
         yield return new WaitForSeconds(1f);
+        
+
+        while(!Keyboard.current.spaceKey.isPressed){
+            yield return null;
+        }
+        
+        StartGamePlay();
     }
 
     public void StartGamePlay()
@@ -95,7 +114,11 @@ public class GameController : MonoBehaviour
 
     public void EndGamePlay()
     {
+        finalScore.SetActive(true);
         endGamePlay?.Invoke();
+        finalScoreText.text = "Final Score:\n" + score.ToString() + "\n Press space to menu";
+
+        EndGame();
     }
 
     public void DamagePlayer(int damage)
@@ -106,6 +129,19 @@ public class GameController : MonoBehaviour
     public void EndGame()
     {
         endGame?.Invoke();
+
+        StartCoroutine(EndGameCoroutine());
+    }
+
+    private IEnumerator EndGameCoroutine()
+    {
+
+        while (!Keyboard.current.spaceKey.isPressed)
+        {
+            yield return null;
+        }
+
+        SceneManager.LoadScene(0);
     }
 
     public void StartGame()
@@ -113,9 +149,9 @@ public class GameController : MonoBehaviour
         startGame?.Invoke();
     }
 
-    public void ChangeDificulty()
+    public void ChangeDificulty(float amount)
     {
-        changeDificulty?.Invoke();
+        changeDificulty?.Invoke(amount);
     }
 
     public void FinishAJoke()

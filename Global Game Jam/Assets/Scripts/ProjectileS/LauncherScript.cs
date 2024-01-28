@@ -14,7 +14,11 @@ public class LauncherScript : MonoBehaviour
     private bool isShooting;
     private Func<Vector2, float, bool> shootType;
     private Func<float, float> CoolDownCalculation;
-    [SerializeField] private float coolDown = 1;
+    [SerializeField] private float divisor;
+    [SerializeField] private float maxSub;
+    [SerializeField] private float minCoolDown;
+    [SerializeField] private float maxCoolDown;
+    [SerializeField] private float coolDown = 3;
     [Header("Probabilidades: Aleatório, Perto, Preciso (Soma deve ser 1)")]
     [SerializeField] private float[] shootProbabilities;
     [SerializeField] private GameObject[] projectilesPrefabs;
@@ -26,7 +30,7 @@ public class LauncherScript : MonoBehaviour
 
     
     private void Awake() {
-        CoolDownCalculation = (x) => x;
+        CoolDownCalculation = (x) => x + Random.Range(x * 0.2f, x * -0.2f);
 
 
         GameController.Instance.startGamePlay += OnStartGamePlay;
@@ -36,6 +40,8 @@ public class LauncherScript : MonoBehaviour
         GameController.Instance.startFiring += StartFiring;
 
         GameController.Instance.stopFiring += StopFiring;
+
+        GameController.Instance.changeDificulty += ChangeCoolDown;
     }
 
     private void StopFiring()
@@ -57,6 +63,8 @@ public class LauncherScript : MonoBehaviour
         GameController.Instance.startFiring -= StartFiring;
 
         GameController.Instance.stopFiring -= StopFiring;
+
+        GameController.Instance.changeDificulty -= ChangeCoolDown;
     }
 
     private void OnStartGamePlay()
@@ -99,6 +107,11 @@ public class LauncherScript : MonoBehaviour
 
         timer -= Time.deltaTime;
         timer2 += Time.deltaTime;
+
+        coolDown -= Mathf.Min(Time.deltaTime * (float)GameController.Instance.GetScore() / divisor, maxSub + 
+                                (float)GameController.Instance.GetScore() / divisor * 10);
+
+        coolDown = Mathf.Clamp(coolDown, minCoolDown, maxCoolDown);
 
         if(timer <= 0)
         {
@@ -202,7 +215,7 @@ public class LauncherScript : MonoBehaviour
 
     public void ChangeCoolDown(float value)
     {
-        coolDown = value;
+        coolDown += value;
     }
 
     public void ChangeCoolDownCalculation(Func<float, float> action)
