@@ -11,6 +11,7 @@ public class LauncherScript : MonoBehaviour
     private float timer;
     private float timer2;
     private int index;
+    private bool isShooting;
     private Func<Vector2, float, bool> shootType;
     private Func<float, float> CoolDownCalculation;
     [SerializeField] private float coolDown = 1;
@@ -27,10 +28,48 @@ public class LauncherScript : MonoBehaviour
     private void Awake() {
         CoolDownCalculation = (x) => x;
 
-        GameController.Instance.endGame += () => {
-            gameObject.SetActive(false);
-        };
+
+        GameController.Instance.startGamePlay += OnStartGamePlay;
+
+        GameController.Instance.endGamePlay += OnEndGamePlay;
+
+        GameController.Instance.startFiring += StartFiring;
+
+        GameController.Instance.stopFiring += StopFiring;
     }
+
+    private void StopFiring()
+    {
+        isShooting = false;
+    }
+
+    private void StartFiring()
+    {
+        isShooting = true;
+    }
+
+    private void OnDisable() {
+
+        GameController.Instance.startGamePlay -= OnStartGamePlay;
+
+        GameController.Instance.endGamePlay -= OnEndGamePlay;
+
+        GameController.Instance.startFiring -= StartFiring;
+
+        GameController.Instance.stopFiring -= StopFiring;
+    }
+
+    private void OnStartGamePlay()
+    {
+        isShooting = true;
+    }
+
+    private void OnEndGamePlay()
+    {
+        this.enabled = false;
+    }
+
+
 
     private void Start()
     {
@@ -56,6 +95,8 @@ public class LauncherScript : MonoBehaviour
 
     private void Update()
     {
+        if(!isShooting) return;
+
         timer -= Time.deltaTime;
         timer2 += Time.deltaTime;
 

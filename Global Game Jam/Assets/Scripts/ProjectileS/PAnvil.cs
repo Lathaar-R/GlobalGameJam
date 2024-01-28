@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class PAnvil : ProjectileScript
 {
+    [SerializeField] private GameObject[] hitPrefabs;
     protected override void Shoot()
     {
         time += Time.deltaTime * speed;
@@ -48,7 +49,7 @@ public class PAnvil : ProjectileScript
             }
             if (Mathf.Abs(transform.position.y - target.y) < 0.1f)
             {
-                Instantiate(hitPrefab, transform.position, Quaternion.identity);
+                Instantiate(UnityEngine.Random.value < 0.9f ? hitPrefabs[0] : hitPrefabs[1], transform.position, Quaternion.identity);
 
                 gameObject.transform.position = Vector2.down * 100;
                 TargetObject.transform.position = Vector2.down * 100;
