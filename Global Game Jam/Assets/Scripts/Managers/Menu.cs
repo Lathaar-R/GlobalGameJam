@@ -10,7 +10,7 @@ public class Menu : MonoBehaviour
     public void TrocarCena()
     {
         // Carrega a cena com o nome fornecido
-        SceneManager.LoadScene("Rodrigo");
+        SceneManager.LoadScene("Tutorial");
     }
 
     public void Sair()
@@ -18,5 +18,9 @@ public class Menu : MonoBehaviour
         // Sai do jogo
         Application.Quit();
     }
-    
+
+    public void Jogar()
+    {
+        SceneManager.LoadScene("Rodrigo");
+    }
 }
