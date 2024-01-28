@@ -182,7 +182,7 @@ public class GameManager : MonoBehaviour
 
     public void VerificaCor(int index)
     {
-       // Debug.Log(a);
+        // Debug.Log(a);
         if (a < letters.Count)
         {
             Letter letter = letters[a];
@@ -213,7 +213,17 @@ public class GameManager : MonoBehaviour
             {
                 a++;
             }
+
             UpdateWordText();
+
+            if (letters.Count <= a)
+            {
+                
+                GameController.Instance.FinishAJoke();
+                StartCoroutine(PausaDepoisPiada(1));
+                GameController.Instance.AddScore(25);
+                
+            }
         }
 
     }
@@ -243,7 +253,7 @@ public class GameManager : MonoBehaviour
         paused = true;
         GameController.Instance.StopFiring();
 
-        aumentaDificuldade(-1);
+        aumentaDificuldade(1);
         a = 0;
 
 
