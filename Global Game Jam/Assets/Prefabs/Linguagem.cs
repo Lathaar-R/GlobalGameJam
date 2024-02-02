@@ -34,6 +34,9 @@ public class Linguagem : MonoBehaviour
         if (c != null)
         {
             check = c.GetComponent<Image>();
+            var button = GameObject.Find("LButton");
+            var b = button.GetComponent<Button>();
+            b.onClick.AddListener(SetPortugues);
         }
     }
 

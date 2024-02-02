@@ -11,15 +11,15 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Player
+  - LimbGround1
+  - LimbGround2
+  - LimbGround3
+  - hitBox
+  - Wall
+  - Projectile
+  - Limb
+  - LimbGround0
   - 
   - 
   - 

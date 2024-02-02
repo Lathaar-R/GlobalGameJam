@@ -178,6 +178,7 @@ public class LauncherScript : MonoBehaviour
             if (i > 1000)
             {
                 Debug.Log("Erro no lançamento");
+                Debug.Log(shootType.Method.Name);
                 break;
             }
 

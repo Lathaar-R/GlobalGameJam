@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 9067014485686108931}
   - component: {fileID: 8380461466290502293}
   - component: {fileID: -4785443630243691092}
-  m_Layer: 7
+  m_Layer: 12
   m_Name: Cenoura
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -101,7 +101,7 @@ PolygonCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 4294967295
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -167,7 +167,7 @@ MonoBehaviour:
     useOutsideNormalAngle: 0
     layerMask:
       serializedVersion: 2
-      m_Bits: 16384
+      m_Bits: 1024
     minDepth: 0
     maxDepth: 0
     minNormalAngle: 0

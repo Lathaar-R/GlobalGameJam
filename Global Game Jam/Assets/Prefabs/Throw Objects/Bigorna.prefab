@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 456979971145497759}
   - component: {fileID: -3079809527546998373}
   - component: {fileID: 309474550154189054}
-  m_Layer: 7
+  m_Layer: 12
   m_Name: Bigorna
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -150,7 +150,7 @@ MonoBehaviour:
     useOutsideNormalAngle: 0
     layerMask:
       serializedVersion: 2
-      m_Bits: 16384
+      m_Bits: 1024
     minDepth: 0
     maxDepth: 0
     minNormalAngle: 0
@@ -198,7 +198,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 4294967295
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2

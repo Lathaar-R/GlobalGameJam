@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8996804234876473733}
   - component: {fileID: 2026150135149741513}
   - component: {fileID: 3450699386015860961}
-  m_Layer: 7
+  m_Layer: 12
   m_Name: Melancia
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -101,7 +101,7 @@ CircleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 4294967295
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -149,7 +149,7 @@ MonoBehaviour:
     useOutsideNormalAngle: 0
     layerMask:
       serializedVersion: 2
-      m_Bits: 16384
+      m_Bits: 0
     minDepth: 0
     maxDepth: 0
     minNormalAngle: 0

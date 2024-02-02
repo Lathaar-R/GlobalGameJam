@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
     public List<Letter> letters;
     //lista de piadas
 
-    int a = 0;
+    int index = 0;
     public string[] jokes;
     public string[] paidas;
     // Referência para os textos de pontuação e palavra
@@ -73,17 +73,17 @@ public class GameManager : MonoBehaviour
     {
         //inicializando as cores dos botões
         colorButtons = new Color[4];
-        colorButtons[0] = new Color(1.0f, 0.0f, 0.0f); // Vermelho
-        colorButtons[1] = new Color(0.0f, 0.0f, 1.0f); // Azul
-        colorButtons[2] = new Color(1.0f, 0.92f, 0.016f); // Amarelo
-        colorButtons[3] = new Color(0.0f, 1.0f, 0.0f); // Verde
-                                                       //inicializando a lista de letras
-                                                       //letters = new List<Letter>();
-                                                       //inicializando a lista de piadas
-                                                       // jokes = new string[3];
-                                                       //jokes[0] = "O que o pato disse para a pata? R: Vem Quá";
-                                                       //jokes[1] = "O que o pato disse para a pata? R: Num Vem Quá";
-                                                       //jokes[2] = "O que o pato disse para a pata? R: Será que Vem Quá"; 
+        colorButtons[0] = new Color(1f, 0.0f, 0.0f); // Vermelho
+        colorButtons[1] = new Color(0.0f, 0.0f, 1f); // Azul
+        colorButtons[2] = new Color(1f, 0.92f, 0.016f); // Amarelo
+        colorButtons[3] = new Color(0.0f, 1f, 0.0f); // Verde
+                                                     //inicializando a lista de letras
+                                                     //letters = new List<Letter>();
+                                                     //inicializando a lista de piadas
+                                                     // jokes = new string[3];
+                                                     //jokes[0] = "O que o pato disse para a pata? R: Vem Quá";
+                                                     //jokes[1] = "O que o pato disse para a pata? R: Num Vem Quá";
+                                                     //jokes[2] = "O que o pato disse para a pata? R: Será que Vem Quá"; 
 
         // jokes[0] = "O que o pato disse para a pata? R: Vem Quá";
         // jokes[1] = "O que o pato disse para a pata? R:Num Vem Quá";
@@ -116,10 +116,10 @@ public class GameManager : MonoBehaviour
             int randomIndex = random.Next(0, colorButtons.Length);
             Color cor = colorButtons[randomIndex];
             if (currentJoke[i] == '?' || currentJoke[i] == '.' || currentJoke[i] == '!' || currentJoke[i] == ',' || currentJoke[i] == ':' || currentJoke[i] == ';' || currentJoke[i] == '-' || currentJoke[i] == '\'')
-                cor = Color.black;
+                cor = Color.white;
 
 
-            letters.Add(new Letter { letter = currentJoke[i], color = cor, isCorrect = false });
+            letters.Add(new Letter { letter = currentJoke[i], color = cor, isCorrect = cor == Color.white });
         }
         //wordText.text = currentJoke;
 
@@ -173,6 +173,7 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         if (paused) return;
+
         if (Input.GetKeyDown(KeyCode.A))
         {
             VerificaCor(0);
@@ -196,14 +197,14 @@ public class GameManager : MonoBehaviour
         UpdateWordText();
     }
 
-    public void VerificaCor(int index)
+    public void VerificaCor(int n)
     {
         // Debug.Log(a);
-        if (a < letters.Count)
+        if (index < letters.Count)
         {
-            Letter letter = letters[a];
+            Letter letter = letters[index];
 
-            if (letters[a].color == colorButtons[index])
+            if (letters[index].color == colorButtons[n])
             {
                 letter.isCorrect = true;
                 GameController.Instance.PlayAudio("acerto");
@@ -215,45 +216,43 @@ public class GameManager : MonoBehaviour
                 GameController.Instance.PlayAudio("erro");
                 aumentaDificuldade(-0.1f);
             }
-            letters[a] = letter;
+            letters[index] = letter;
 
-            if (letters[a].letter == ' ' || letters[a].letter == '?' ||
-                   letters[a].letter == '.' || letters[a].letter == '!' ||
-                   letters[a].letter == ',' || letters[a].letter == ':' ||
-                   letters[a].letter == ';' || letters[a].letter == '-' || letters[a].letter == '\'')
-            {
-                a++;
-            }
+            index++;
 
-            a++;
-
-            if (letters.Count <= a)
+            if (letters.Count <= index)
             {
                 GameController.Instance.FinishAJoke();
                 StartCoroutine(PausaDepoisPiada(1));
                 GameController.Instance.AddScore(25);
             }
-            else if (letters[a].letter == ' ' || letters[a].letter == '?' ||
-                    letters[a].letter == '.' || letters[a].letter == '!' ||
-                    letters[a].letter == ',' || letters[a].letter == ':' ||
-                    letters[a].letter == ';' || letters[a].letter == '-')
+            else
             {
-                a++;
-            }
+                while (IsPunctuation(letters[index].letter))
+                {
+                    index++;
+                }
 
-            UpdateWordText();
+                //UpdateWordText();
 
-            if (letters.Count <= a)
-            {
+                if (letters.Count <= index)
+                {
 
-                GameController.Instance.FinishAJoke();
-                StartCoroutine(PausaDepoisPiada(1));
-                GameController.Instance.AddScore(25);
+                    GameController.Instance.FinishAJoke();
+                    StartCoroutine(PausaDepoisPiada(1));
+                    GameController.Instance.AddScore(25);
 
+                }
             }
         }
 
     }
+
+    private bool IsPunctuation(char c)
+    {
+        return c == ' ' || c == '?' || c == '.' || c == '!' || c == ',' || c == ':' || c == ';' || c == '-' || c == '\\';
+    }
+
 
     public void aumentaDificuldade(float amount)
     {
@@ -282,8 +281,8 @@ public class GameManager : MonoBehaviour
 
         aumentaDificuldade(1);
 
-        GameController.Instance.PlayAudio("risadas"); 
-        a = 0;
+        GameController.Instance.PlayAudio("risadas");
+        index = 0;
 
 
         // Aguarda por 1 segundo
