@@ -115,11 +115,11 @@ public class GameManager : MonoBehaviour
         {
             int randomIndex = random.Next(0, colorButtons.Length);
             Color cor = colorButtons[randomIndex];
-            if (currentJoke[i] == '?' || currentJoke[i] == '.' || currentJoke[i] == '!' || currentJoke[i] == ',' || currentJoke[i] == ':' || currentJoke[i] == ';' || currentJoke[i] == '-' || currentJoke[i] == '\'')
+            if (IsPunctuation(currentJoke[i]))
                 cor = Color.white;
 
 
-            letters.Add(new Letter { letter = currentJoke[i], color = cor, isCorrect = cor == Color.white });
+            letters.Add(new Letter { letter = currentJoke[i], color = cor, isCorrect = false });
         }
         //wordText.text = currentJoke;
 
@@ -228,9 +228,13 @@ public class GameManager : MonoBehaviour
             }
             else
             {
-                while (IsPunctuation(letters[index].letter))
+                while (letters.Count > index && IsPunctuation(letters[index].letter))
                 {
+                    var l = letters[index];
+                    l.isCorrect = true;
+                    letters[index] = l;
                     index++;
+                    
                 }
 
                 //UpdateWordText();
@@ -250,7 +254,7 @@ public class GameManager : MonoBehaviour
 
     private bool IsPunctuation(char c)
     {
-        return c == ' ' || c == '?' || c == '.' || c == '!' || c == ',' || c == ':' || c == ';' || c == '-' || c == '\\';
+        return c == ' ' || c == '?' || c == '.' || c == '!' || c == ',' || c == ':' || c == ';' || c == '-' || c == '\\' || c == '\'';
     }
 
 
