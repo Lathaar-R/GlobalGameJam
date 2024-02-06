@@ -145,7 +145,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetObjectPrefab: {fileID: 1256783977477465844, guid: 44d42dc9dee9d1d42bd1cd64396e088a, type: 3}
-  speed: 0.5
+  speed: 0.6
   height: 2
   growScale: 1.2
   rotationSpeed: 0.4

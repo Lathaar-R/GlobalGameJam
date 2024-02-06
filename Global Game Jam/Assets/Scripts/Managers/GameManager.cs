@@ -224,7 +224,7 @@ public class GameManager : MonoBehaviour
             {
                 GameController.Instance.FinishAJoke();
                 StartCoroutine(PausaDepoisPiada(1));
-                GameController.Instance.AddScore(25);
+                GameController.Instance.AddScore(20);
             }
             else
             {
@@ -244,7 +244,7 @@ public class GameManager : MonoBehaviour
 
                     GameController.Instance.FinishAJoke();
                     StartCoroutine(PausaDepoisPiada(1));
-                    GameController.Instance.AddScore(25);
+                    GameController.Instance.AddScore(20);
 
                 }
             }
@@ -283,7 +283,7 @@ public class GameManager : MonoBehaviour
         paused = true;
         GameController.Instance.StopFiring();
 
-        aumentaDificuldade(1);
+        aumentaDificuldade(2);
 
         GameController.Instance.PlayAudio("risadas");
         index = 0;

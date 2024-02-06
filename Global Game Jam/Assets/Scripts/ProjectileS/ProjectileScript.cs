@@ -51,11 +51,13 @@ public abstract class ProjectileScript : MonoBehaviour
 
         if (targetObject == null)
         {
+            arcDir = Mathf.Sign(target.x);
             targetObject = Instantiate(targetObjectPrefab);
             targetObject.transform.position = Vector2.down * 100;
         }
         else
         {
+            arcDir = Mathf.Sign(target.x);
             startTargetScale = targetObject.transform.localScale;
             targetObject.transform.position = target;
             //Debug.Log(Target);

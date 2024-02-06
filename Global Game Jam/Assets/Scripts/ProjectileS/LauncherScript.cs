@@ -139,19 +139,19 @@ public class LauncherScript : MonoBehaviour
     {
         var r = Random.value;
 
-        if(r < shootProbabilities[0])
+        if (r < shootProbabilities[2])
         {
-            shootType = RandomShoot;
+            shootType = PreciseShoot;
         }
-        else if(r < shootProbabilities[1])
+        else if (r < shootProbabilities[1])
         {
             shootType = NearShoot;
         }
         else
         {
-            shootType = PreciseShoot;
+            shootType = RandomShoot;
         }
-        
+
 
         var pList = projectilePool.Where(p => !p.activeSelf).ToList();
 
@@ -206,7 +206,7 @@ public class LauncherScript : MonoBehaviour
 
     private bool NearShoot(Vector2 target, float radius)
     {
-        return Physics2D.OverlapCircle(target, radius * 5, playerLayer) != null;
+        return Physics2D.OverlapCircle(target, radius * 4, playerLayer) != null;
     }
 
     private bool PreciseShoot(Vector2 target, float radius)

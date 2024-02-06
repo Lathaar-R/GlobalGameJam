@@ -1682,12 +1682,12 @@ MonoBehaviour:
   - Some people eat snails, they don't like fast food.
   - It takes guts to be an organ donor.
   - I'm on a seafood diet. I see food and I eat it.
-  - There's something bad about graduation jokes, they don't have a "ponche" line.
+  - There's something bad about graduation jokes, they don't have a ponche line.
   - What the road said to the Wheel? You look tired.
   - pencils can't fight. They always end in a draw.
   - I'm afraid for the calendar. Its days are numbered.
   - I don't trust those trees. They seem kind of shady.
-  - What does a bee use to brush its hair?" "A honeycomb!
+  - What does a bee use to brush its hair?A honeycomb!
   - My dad told me a joke about boxing. I guess I missed the punch line.
   - I used to play piano by ear. Now I use my hands.
   paidas:
@@ -1701,7 +1701,6 @@ MonoBehaviour:
   - "Qual e o contr\xE1rio de volatil? Vem aqui sobrinho  "
   - "O que a zebra disse para a pulga? Voc\xEA esta na minha lista negra."
   - O que e um gordo subindo pra cima? Uma redondancia
-  - "Sabe o que o n\xFAmero 0 disse ao numero 8? Que bonito o seu cinto"
   - O que e um gordo subindo pra cima? Uma redondancia
   - Sabe o que o numero 0 disse ao numero 8? Que bonito o seu cinto
   - Qual e a cantora que da ordens para todo mundo? A Mandonna.
@@ -2218,33 +2217,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8500447f0f07d641a180e045dc7f94b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  divisor: 500
-  maxSub: 0.1
+  divisor: 1000
+  maxSub: 0.05
   minCoolDown: 0.5
   maxCoolDown: 5
   coolDown: 3
   shootProbabilities:
   - 0.5
-  - 0.35
-  - 0.15
+  - 0.8
+  - 0.5
   projectilesPrefabs:
   - {fileID: 5298156250770820214, guid: b1d020265ac42d143a99aecf676d13c4, type: 3}
+  - {fileID: 5298156250770820214, guid: bb0490906eb1338469745d7d1e1215d3, type: 3}
   - {fileID: 6317427831253184369, guid: 76cb935a58942e14a88ecb9c85be7e5c, type: 3}
   - {fileID: 9148471706159208413, guid: ba306c7ab520c23478ad9fe5f6682f05, type: 3}
   - {fileID: 2651838176342466659, guid: 88087ae9d84f84f4abc5696dc2b86d79, type: 3}
-  - {fileID: 5298156250770820214, guid: bb0490906eb1338469745d7d1e1215d3, type: 3}
   projectileProbabilities:
-  - 80
-  - 60
   - 40
-  - 30
   - 1
+  - 30
+  - 20
+  - 15
   projectileAppearTime:
   - 0
-  - 30
-  - 90
-  - 150
-  - 1000
+  - 1
+  - 20
+  - 60
+  - 100
   projectilePool: []
   wallsLayer:
     serializedVersion: 2
