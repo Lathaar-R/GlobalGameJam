@@ -14,7 +14,11 @@ public class Linguagem : MonoBehaviour
 
     private void Awake()
     {
-
+        var obj = GameObject.Find("Linguagem");
+        if(obj != null && obj != gameObject)
+        {
+            Destroy(gameObject);
+        }
         DontDestroyOnLoad(gameObject);
         SceneManager.sceneLoaded += OnSceneLoaded;
 
@@ -34,6 +38,7 @@ public class Linguagem : MonoBehaviour
         if (c != null)
         {
             check = c.GetComponent<Image>();
+            portugues = false;
             var button = GameObject.Find("LButton");
             var b = button.GetComponent<Button>();
             b.onClick.AddListener(SetPortugues);

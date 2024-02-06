@@ -52,9 +52,9 @@ public class PlayerHealth : MonoBehaviour
             limb.gravityScale = 3;
             float randomRotation = UnityEngine.Random.Range(-60, 60); // Get a random rotation between -20 and 20 degrees
             Quaternion rotation = Quaternion.Euler(0, 0, randomRotation); // Create a rotation using the random rotation
-            Vector2 rotatedVector = rotation * Vector2.up * 0.00005f; // Apply the rotation to the vector
+            Vector2 rotatedVector = rotation * Vector2.up * 0.15f; // Apply the rotation to the vector
             limb.AddForce(rotatedVector);
-            limb.AddTorque(0.005f * Random.value > 0.5f ? 1 : -1);
+            limb.AddTorque(0.05f * (Random.value > 0.5f ? 1 : -1));
             limb.excludeLayers = LayerMask.GetMask("Player", "Projectile", "LimbGround" + (index + 1) % 3,  "LimbGround" + (index + 2) % 3);
             limb.gameObject.layer = LayerMask.NameToLayer("Limb");
 
@@ -110,11 +110,11 @@ public class PlayerHealth : MonoBehaviour
             leg12.gravityScale = 3;
             body.gravityScale = 3;
 
-            leg.gameObject.transform.parent = null;
-            leg2.gameObject.transform.parent = null;
-            leg1.gameObject.transform.parent = null;
-            leg12.gameObject.transform.parent = null;
-            body.gameObject.transform.parent = null;
+            // leg.gameObject.transform.parent = null;
+            // leg2.gameObject.transform.parent = null;
+            // leg1.gameObject.transform.parent = null;
+            // leg12.gameObject.transform.parent = null;
+            // body.gameObject.transform.parent = null;
 
 
             leg.excludeLayers = LayerMask.GetMask("Player", "Projectile", "LimbGround" + (index + 1) % 3,  "LimbGround" + (index + 2) % 3);
