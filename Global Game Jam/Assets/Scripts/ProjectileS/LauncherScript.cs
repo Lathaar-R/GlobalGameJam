@@ -168,6 +168,7 @@ public class LauncherScript : MonoBehaviour
             float camHeight = 2f * cam.orthographicSize; // Calculate the height of the camera's view in world units
             float camWidth = camHeight * cam.aspect; // Calculate the width of the camera's view in world units
 
+
             Vector3 camBottomLeft = new Vector3(-camWidth * 0.5f, -camHeight * 0.5f, 0); // Calculate the bottom-left corner of the camera's view in world units
             Vector3 camTopRight = new Vector3(camWidth * 0.5f, camHeight * 0.5f, 0); // Calculate the top-right corner of the camera's view in world units
 
